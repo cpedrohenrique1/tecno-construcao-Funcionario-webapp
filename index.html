@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Title</title>
+</head>
+<body>
+    <form>
+        <label for="nome">Nome do funcionario: </label>
+        <input type="text" name="nome" id="nome">
+        <label for="idade">Idade do funcionario: </label>
+        <input type="number" name="idade" id="idade">
+        <label for="cargo">Cargo do funcionario: </label>
+        <input type="text" name="cargo" id="cargo">
+        <label for="salario">Salario do funcionario: </label>
+        <input type="number" name="salario" id="salario">
+        <button type="button" onclick="cadastrarButton()">Cadastrar</button>
+    </form>
+    <table>
+        <thead>
+        <th>Nome do funcionario</th>
+        <th>Idade do funcionario</th>
+        <th>Cargo do funcionario</th>
+        <th>Salario do funcionario</th>
+        </thead>
+        <tbody id="tableFuncionariosBody"></tbody>
+    </table>
+    <script src="Funcionario.js"></script>
+    <script src="index.js"></script>
+</body>
+</html>
