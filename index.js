@@ -1,6 +1,6 @@
 const funcionarios = [];
 
-const cadastrarButton = ()=> {
+const cadastrarButton = function () {
     const nome = document.getElementById("nome").value;
     const idade = document.getElementById("idade").value;
     const cargo = document.getElementById("cargo").value;
@@ -9,7 +9,7 @@ const cadastrarButton = ()=> {
     atualizarTabela();
 };
 
-const atualizarTabela = () => {
+const atualizarTabela = function () {
     const tableFuncionarios = document.getElementById("tableFuncionariosBody");
     tableFuncionarios.innerHTML = "";
     for (let i = 0; i < funcionarios.length; i++) {
@@ -32,7 +32,7 @@ const atualizarTabela = () => {
     }
 };
 
-const AtualizarFuncionarioButton = (index) => {
+const AtualizarFuncionarioButton = function (index) {
     if (index < 0 || index >= funcionarios.length) {
         throw "indice invalido";
     }
@@ -52,7 +52,7 @@ const AtualizarFuncionarioButton = (index) => {
     atualizarTabela();
 }
 
-const editarFuncionario = (index) => {
+const editarFuncionario = function (index) {
     if (index < 0 || index >= funcionarios.length) {
         throw "indice invalido";
     }
@@ -67,7 +67,7 @@ const editarFuncionario = (index) => {
     botao.setAttribute("id", "buttonEditar");
 }
 
-const excluirFuncionario = (index) => {
+const excluirFuncionario = function (index) {
     if (index < 0 || index >= funcionarios.length) {
         throw "indice invalido";
     }
