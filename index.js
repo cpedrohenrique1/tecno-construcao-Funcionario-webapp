@@ -6,9 +6,9 @@ document.addEventListener("DOMContentLoaded", function () {
 
     botaoCadastrar.addEventListener("click", () => {
         const nome = document.getElementById("nome").value;
-        const idade = document.getElementById("idade").value;
+        const idade = parseInt(document.getElementById("idade").value);
         const cargo = document.getElementById("cargo").value;
-        const salario = document.getElementById("salario").value;
+        const salario = parseFloat(document.getElementById("salario").value);
 
         if (editandoIndex === null) {
             funcionarios.push(new Funcionario(nome, idade, cargo, salario));
@@ -20,7 +20,6 @@ document.addEventListener("DOMContentLoaded", function () {
             editandoIndex = null;
             botaoCadastrar.textContent = "Cadastrar";
         }
-
         atualizarTabela(funcionarios);
     });
 
@@ -49,6 +48,9 @@ document.addEventListener("DOMContentLoaded", function () {
                 <button type="button" class="excluirButton" data-index="${i}">Excluir</button>
             `;
         }
+        mediaSalarial();
+        listarCargosUnicos();
+        criarListaNomesMaiusulo();
     };
 
     document.getElementById("tableFuncionariosBody").addEventListener("click", (event) => {
@@ -89,4 +91,27 @@ document.addEventListener("DOMContentLoaded", function () {
     const buscarFuncionario = (nome) => {
         atualizarTabela(funcionarios.filter(funcionario => funcionario.nome === nome));
     };
+
+    document.getElementById("maioresSalarios").addEventListener("click", ()=> {
+        listarFuncionariosComMaiorSalario(5000);
+    });
+    const listarFuncionariosComMaiorSalario = (valor) => {
+        atualizarTabela(funcionarios.filter(funcionario => funcionario.salario > valor));
+    };
+
+    const mediaSalarial = () => {
+        const mediaSalario = funcionarios.reduce((acc, funcionario) => acc + funcionario.salario, 0) / funcionarios.length;
+        document.getElementById("mediaSalarial").textContent = `Média dos salários: R$${mediaSalario}`;
+    }
+
+    const listarCargosUnicos = () => {
+        const cargosUnicos = new Set(funcionarios.map(funcionario => funcionario.cargo));
+
+        document.getElementById("listaCargosUnicos").textContent = `Lista de cargos: ${Array.from(cargosUnicos).join(", ")}`;
+    }
+
+    const criarListaNomesMaiusulo = () => {
+        const nomesMaiusculos = funcionarios.map(funcionario => funcionario.nome.toUpperCase());
+        document.getElementById("listaNomesMaiusculos").textContent = `Lista de nomes maiusculos: ${Array.from(nomesMaiusculos).join(", ")}`;
+    }
 });
